@@ -44,9 +44,13 @@ if __name__ == "__main__":
     )
 
     # submit to kaggle
-    kaggle.api.competition_submit(file_name=str(data_path / 'submission.csv'), message='Testing submission api', competition='titanic')
+    kaggle.api.competition_submit(
+        file_name=str(data_path / "submission.csv"),
+        message="Testing submission api",
+        competition="titanic",
+    )
     time.sleep(30)
     test_accuracy = kaggle.api.process_response(
         kaggle.api.competitions_submissions_list_with_http_info("titanic")
     )[0]["publicScore"]
-    mlflow_client.log_metric(run_id, 'test_accuracy', float(test_accuracy))
+    mlflow_client.log_metric(run_id, "test_accuracy", float(test_accuracy))

@@ -24,16 +24,16 @@ def preprocess(df, feature_labels, impute_dict={}):
 
 def decision_tree(examples):
     parameter_grid = {
-        'criterion': ['gini', 'entropy'],
-        'splitter': ['best', 'random'],
-        'max_depth': [None, 1, 2, 3, 4, 5, 6, 7]
+        "criterion": ["gini", "entropy"],
+        "splitter": ["best", "random"],
+        "max_depth": [None, 1, 2, 3, 4, 5, 6, 7],
     }
     estimator = tree.DecisionTreeClassifier()
     clf = GridSearchCV(estimator=estimator, param_grid=parameter_grid)
     clf.fit(X=examples[feature_labels], y=examples[target_label])
     mlflow.log_params(clf.best_params_)
-    mlflow.log_metric('validation_accuracy', clf.best_score_)
-    mlflow.sklearn.log_model(clf.best_estimator_, 'titanic-survival')
+    mlflow.log_metric("validation_accuracy", clf.best_score_)
+    mlflow.sklearn.log_model(clf.best_estimator_, "titanic-survival")
 
 
 def train_and_validate():
