@@ -1,0 +1,12 @@
+name: titanic
+
+conda_env: environment.yaml
+
+entry_points:
+  data:
+    command: sh get_data.sh
+  train:
+    command: python titanic/survival_classifier.py
+  kaggle_predict:
+    command: python titanic/kaggle_predict.py
+    

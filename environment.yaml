@@ -1,0 +1,15 @@
+name: titanic
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - kaggle
+  - mlflow
+  - jupyterlab
+  - matplotlib
+  - black
+  - pylint
+  - scikit-learn
+prefix: /home/jonas/opt/anaconda/envs/titanic
+
