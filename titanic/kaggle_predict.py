@@ -6,7 +6,7 @@ Get predictions for test set and submit to kaggle. After submitting, update the 
 import mlflow
 import pandas as pd
 from pathlib import Path
-from survival_classifier import preprocess
+from train import preprocess, feature_labels
 import kaggle
 import time
 import os
@@ -32,7 +32,6 @@ if __name__ == "__main__":
     test_df = pd.read_csv(data_path / "test.csv")
 
     # preprocessing
-    feature_labels = ["Age", "Embarked", "Pclass", "Sex"]
     impute_strats = {
         "Age": round(train_df["Age"].mean()),
         "Embarked": train_df["Embarked"].mode()[0],
