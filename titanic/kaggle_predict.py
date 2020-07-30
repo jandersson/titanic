@@ -15,7 +15,7 @@ import os
 if __name__ == "__main__":
     # Load Model and fetch run_id so we can record the kaggle accuracy score after submitting
     model_name = "titanic-survival"
-    model_stage = "Production"
+    model_stage = "Staging"
     mlflow_uri = os.environ.get("MLFLOW_TRACKING_URI")
     mlflow_client = mlflow.tracking.MlflowClient(
         tracking_uri=mlflow_uri, registry_uri=mlflow_uri
@@ -36,6 +36,7 @@ if __name__ == "__main__":
         "Age": round(train_df["Age"].mean()),
         "Embarked": train_df["Embarked"].mode()[0],
         "Cabin": "Unknown",
+        "Fare": round(train_df["Fare"].mean()),
     }
     test_df = preprocess(test_df, feature_labels, impute_strats)
     test_df["Survived"] = model.predict(test_df[feature_labels])
